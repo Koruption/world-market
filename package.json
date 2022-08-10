@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@danmarshall/deckgl-typings": "^4.9.25",
+    "@nextui-org/react": "^1.0.0-beta.9",
+    "deck.gl": "^8.8.6",
+    "mapbox-gl": "^2.9.2",
     "next": "12.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-map-gl": "^7.0.18",
+    "recharts": "^2.1.9",
+    "vega-statistics": "^1.8.0"
   },
   "devDependencies": {
     "@types/node": "18.6.5",
