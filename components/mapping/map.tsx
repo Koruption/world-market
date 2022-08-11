@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Map from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { Button, Input } from '@nextui-org/react';
+import { Button, Card, Container, Input } from '@nextui-org/react';
 
 // mapboxgl.accessToken = process.env.MAPBOX_TOKEN!;
 
@@ -36,10 +36,14 @@ export default function Mapp() {
                 style={{ width: '100vw', height: '100vh' }}
                 mapStyle="mapbox://styles/mapbox/dark-v10"
             >
-                <Button color={"success"} style={{ zIndex: 3 }}>
-                    Pan
-                </Button>
-                <Input label='Search item'></Input>
+                <Container style={{ width: '25vw', marginRight: 0, marginTop: '80vh' }}>
+                    <Card>
+                        <Button color={"success"} style={{ zIndex: 3 }}>
+                            Random Pan
+                        </Button>
+                        <Input color="secondary" placeholder='Search marker'></Input>
+                    </Card>
+                </Container>
             </Map>
         </>
     );
