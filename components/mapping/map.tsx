@@ -2,46 +2,53 @@ import * as React from 'react';
 import Map from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Button, Card, Container, Input } from '@nextui-org/react';
+import { WMarket } from '../../src/wmarket';
 
 // mapboxgl.accessToken = process.env.MAPBOX_TOKEN!;
 
 export default function Mapp() {
 
-    // const mapContainerRef: MutableRefObject<any | null> = useRef(null);
+    const [viewState, setViewState] = React.useState({
+        longitude: -100,
+        latitude: 40,
+        zoom: 3.5
+    })
 
-    // useEffect(() => {
-    //     const map = new mapboxgl.Map({
-    //         accessToken: 'pk.eyJ1IjoieHhsd29maXh4IiwiYSI6ImNsNm5uMXZmOTAyZDYzZHBwenh1d2V6MGkifQ.FxuHO3ZSZJ8nMWLqK6srFw',
-    //         container: mapContainerRef.current,
-    //         style: 'mapbox://styles/mapbox/streets-v11',
-    //         center: [-104.9876, 39.7405],
-    //         zoom: 12.5,
-    //     })
+    function getRandomLatLong() {
+        const data = { latitude: WMarket.math.sRand(90.00), longitude: WMarket.math.sRand(180.00) }
+        console.log(data);
+        return data
+    }
 
-    //     map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-
-    //     return map.remove();
-    // }, [])
+    function randomizeGeoTarget() {
+        console.log('randomizing geos')
+        setViewState(p => ({
+            ...getRandomLatLong(),
+            zoom: p.zoom
+        }))
+    }
 
     return (
         <>
             <Map
                 pitch={60}
+                latitude={viewState.latitude}
+                longitude={viewState.longitude}
                 mapboxAccessToken='pk.eyJ1IjoieHhsd29maXh4IiwiYSI6ImNsNm5tdG4yZzAyZTczb3F1OXgzbmx0MHoifQ.GpCYKnR5qmpCA9hoOb7fDA'
-                initialViewState={{
-                    longitude: -100,
-                    latitude: 40,
-                    zoom: 3.5
-                }}
+                initialViewState={viewState}
                 style={{ width: '100vw', height: '100vh' }}
                 mapStyle="mapbox://styles/mapbox/dark-v10"
             >
                 <Container style={{ width: '25vw', marginRight: 0, marginTop: '80vh' }}>
                     <Card>
-                        <Button color={"success"} style={{ zIndex: 3 }}>
+                        <Button
+                            color={"success"}
+                            style={{ zIndex: 3 }}
+                            onPress={() => { randomizeGeoTarget() }}
+                        >
                             Random Pan
                         </Button>
-                        <Input color="secondary" placeholder='Search marker'></Input>
+                        <Input color="success" placeholder='Search marker'></Input>
                     </Card>
                 </Container>
             </Map>
