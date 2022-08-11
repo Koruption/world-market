@@ -8,10 +8,12 @@ import MapBx from '../components/mapping/mapbox'
 import { useEffect, useState } from 'react'
 import LineChart from '../components/charts/bar-chart'
 import LChart from '../components/charts/bar-chart'
-const vega =  require('vega-statistics')
+import Mapp from '../components/mapping/map'
+import Document from '../components/document'
+const vega = require('vega-statistics')
 
 const choice = <T = any>(arr: Array<T>) => {
-  return arr[Math.round(Math.random()*(arr.length-1))]
+  return arr[Math.round(Math.random() * (arr.length - 1))]
 }
 
 const get_wiener = (sampleSize: number) => {
@@ -20,23 +22,23 @@ const get_wiener = (sampleSize: number) => {
 
 namespace Brownian {
   let x0 = 0;
-  
+
   export const randomWalk = (nStep = 100) => {
-    let w: Array<number> = new Array(nStep).fill(1*x0);
+    let w: Array<number> = new Array(nStep).fill(1 * x0);
     for (let i = 1; i <= nStep; i++) {
       let yi = choice([-1, 1]);
-      w.push(w[i-1]+(yi/Math.sqrt(nStep)))
+      w.push(w[i - 1] + (yi / Math.sqrt(nStep)))
     }
     return w;
   }
 }
 
-const stochastic_sim = (basePrice: number, updatePrice: (p: number) => void, timeDelta=1000, iterations=100) => {
+const stochastic_sim = (basePrice: number, updatePrice: (p: number) => void, timeDelta = 1000, iterations = 100) => {
   let iter = 0;
   const interval = setInterval(() => {
     if (iter === iterations) clearInterval(interval);
     return
-  }) 
+  })
 }
 
 
@@ -53,12 +55,14 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <LChart/>
+      {/* <Document></Document> */}
+      <Mapp />
+      {/* <LChart /> */}
     </>
     // <>
     //   { wiener }
     // </>
-      // <MapBx></MapBx>
+    // <MapBx></MapBx>
     // <div style={{ height: '100vh', width: '100vw'}}>
     // </div>
   )
