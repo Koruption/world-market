@@ -303,7 +303,11 @@ export const chartData = [
 // { data }: { data: ChartData[] }
 export default function LChart() {
   return (
-    <LineChart width={500} height={300} data={data}>
+    <LineChart
+      width={500}
+      height={300}
+      data={data}
+    >
           <XAxis dataKey="name"/>
     <YAxis/>
     <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>

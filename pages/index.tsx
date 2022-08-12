@@ -8,6 +8,8 @@ import LineChart from '../components/charts/bar-chart'
 import LChart from '../components/charts/bar-chart'
 import Mapp from '../components/mapping/map'
 import Document from '../components/document'
+import Deck from '../components/mapping/deck';
+import { Market } from '../lib/wmarket';
 const vega = require('vega-statistics')
 
 const Home: NextPage = () => {
@@ -15,6 +17,9 @@ const Home: NextPage = () => {
   const [price, updatePrice] = useState(110.99)
   const [wiener, setWiener] = useState(0);
   const [data, setData] = useState(null as any);
+
+  // console.log(Market.traders.getTraders())
+
   // useEffect(() => {
   //   //setWiener(get_wiener())
   //   setData(chartData)
@@ -23,16 +28,10 @@ const Home: NextPage = () => {
 
   return (
     <>
-      {/* <Document></Document> */}
-      <Mapp />
+      <Deck/>
+      {/* <Mapp /> */}
       {/* <LChart /> */}
     </>
-    // <>
-    //   { wiener }
-    // </>
-    // <MapBx></MapBx>
-    // <div style={{ height: '100vh', width: '100vw'}}>
-    // </div>
   )
 }
 
