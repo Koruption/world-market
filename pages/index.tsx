@@ -1,34 +1,33 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { Container, Row, Col } from '@nextui-org/react';
-import { useEffect, useState } from 'react'
-import LineChart from '../components/charts/bar-chart'
-import LChart from '../components/charts/bar-chart'
+// import LineChart from '../components/charts/bar-chart'
+// import LChart from '../components/charts/bar-chart'
 import Mapp from '../components/mapping/map'
-import Document from '../components/document'
 import Deck from '../components/mapping/deck';
+import LineChart from '../components/charts/line';
 import { Market } from '../lib/wmarket';
-const vega = require('vega-statistics')
+// const vega = require('vega-statistics')
 
 const Home: NextPage = () => {
 
-  const [price, updatePrice] = useState(110.99)
-  const [wiener, setWiener] = useState(0);
-  const [data, setData] = useState(null as any);
-
-  // console.log(Market.traders.getTraders())
-
-  // useEffect(() => {
-  //   //setWiener(get_wiener())
-  //   setData(chartData)
-  // }, [])
-
+  const lineData = {
+    labels: Market.math.uspace(0,100),
+    datasets: [{
+      label: 'Data',
+      // data: Market.math.rspace(1000,1000, 40),
+      data: Market.simulations.genRandomWalk(323.22, 500, 80),
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
+    }]
+  }
 
   return (
     <>
-      <Deck/>
+      <LineChart
+        props={ lineData }
+      />
+      {/* <Deck/> */}
       {/* <Mapp /> */}
       {/* <LChart /> */}
     </>
