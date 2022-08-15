@@ -2,19 +2,23 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
+  BarElement,
+  BarController,
   PointElement,
   LineElement,
   Title,
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Line, Scatter, Bar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker' 
 
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
+  BarController,
+  BarElement,
   PointElement,
   LineElement,
   Title,
@@ -71,4 +75,6 @@ export interface ChartDataset {
 
 export default function LineChart({props}: { props: ChartProps}) {
   return <Line options={options} data={props} />;
+  // return <Scatter options={options} data={props} />;
+  // return <Bar options={options} data={props} />;
 }
